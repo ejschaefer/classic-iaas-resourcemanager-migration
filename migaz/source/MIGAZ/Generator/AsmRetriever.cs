@@ -97,6 +97,9 @@ namespace MIGAZ.Generator
                 case "ReservedIPs":
                     url = ServiceUrls.GetServiceManagementUrl(app.Default.AzureEnvironment) + subscriptionId + "/services/networking/reservedips";
                     break;
+                case "AffinityGroup":
+                    url = ServiceUrls.GetServiceManagementUrl(app.Default.AzureEnvironment) + subscriptionId + "/affinitygroups/" + info["affinitygroupname"];
+                    break;
             }
 
             Application.DoEvents();
@@ -129,7 +132,7 @@ namespace MIGAZ.Generator
                 _logProvider.WriteLog("GetAzureASMResources", "EXCEPTION " + exception.Message);
                 DialogResult dialogresult = MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 xml = "";
-                Application.ExitThread();
+                //Application.ExitThread();
             }
 
             if (xml != "")
